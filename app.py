@@ -239,12 +239,14 @@ else:
                 table_cols = ["day", "meal_name", "food_name", "portion_g", "done"]
                 df = pd.DataFrame(p["items"])[table_cols]
                 # mostrar tabela editável por checkboxes: vamos renderizar linhas com checkbox
-                for i, it in enumerate(p["items"]):
-                    cols_row = st.columns([1, 3, 3, 2, 1])
-                    cols_row[0].write(it["day"])
-                    cols_row[1].write(it["meal_name"])
-                    cols_row[2].write(it["food_name"])
-                    cols_row[3"].write(f"{it['portion_g']} g")
+for i, it in enumerate(p["items"]):
+    cols_row = st.columns([1, 3, 3, 2, 1])
+    cols_row[0].write(it["day"])
+    cols_row[1].write(it["meal_name"])
+    cols_row[2].write(it["food_name"])
+    cols_row[3].write(f"{it['portion_g']} g")  
+    new_done = cols_row[4].checkbox("Concluída", value=it.get("done", False), key=f"{p['id']}_done_{i}")
+
                     new_done = cols_row[4].checkbox("Concluída", value=it.get("done", False), key=f"{p['id']}_done_{i}")
                     if new_done != it.get("done", False):
                         # atualizar o estado do item
