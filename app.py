@@ -158,7 +158,7 @@ def join_group(name, user):
 # ---------- UI: Sidebar ----------
 st.sidebar.title("Power Routine")
 st.sidebar.markdown("**Usuário**")
-disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
+disp = st.sidebar.text_input("Nome de Usuário", value=get_username())
 st.session_state["display_name"] = disp
 
 page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Carregar fotos ou artigos", "Feed", "Competições", ])
