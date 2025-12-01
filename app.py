@@ -163,7 +163,7 @@ st.session_state["display_name"] = disp
 
 page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Feed", "Competições", "Logs"])
 st.sidebar.markdown("---")
-st.sidebar.caption("Dica: para persistência real, integre com uma API e storage (Railway + S3 / Supabase).")
+
 
 # ---------- PAGE: Gerar Plano ----------
 if page == "Gerar Plano":
@@ -175,15 +175,12 @@ if page == "Gerar Plano":
         days = st.number_input("Dias do plano", min_value=1, max_value=30, value=7)
         meals = st.number_input("Refeições por dia", min_value=1, max_value=6, value=3)
         user_id = st.text_input("User ID (dev)", value=get_username())
-        use_api = st.checkbox("Tentar usar API remota (se disponível)", value=False)
+
     with col2:
         st.write(" ")
         st.write(" ")
         gen_btn = st.button("Gerar Plano Agora", type="primary")
 
-    with st.expander("Logs / status", expanded=False):
-        for entry in st.session_state["log"][-30:]:
-            st.write(entry)
 
     if gen_btn:
         if st.session_state["generating"]:
@@ -416,7 +413,7 @@ elif page == "Feed":
             feed_items = sorted(feed_items, key=lambda x: x.get("created_at",""), reverse=True)
 
         if not feed_items:
-            st.info("Nenhum item no feed com esses filtros.")
+            st.info("Nenhum item encontrado.")
         else:
             for it in feed_items:
                 if it["type"] == "photo":
@@ -466,7 +463,7 @@ elif page == "Feed":
 # ---------- PAGE: Competições ----------
 elif page == "Competições":
     st.title("Competições entre Grupos")
-    st.write("Crie grupos, junte membros, poste fotos no grupo e compita por mais likes.")
+    st.write("Crie grupos, junte membros, poste fotos no grupo e compita com seus amigos.")
     left, right = st.columns([1,2])
 
     with left:
@@ -486,7 +483,7 @@ elif page == "Competições":
                 st.error("Escolha um grupo.")
 
     with right:
-        st.subheader("Leaderboard")
+        st.subheader("Ranking")
         leaderboard = []
         for gname, g in st.session_state["groups"].items():
             total_likes = sum(next((p["likes"] for p in st.session_state["photos"] if p["id"]==pid), 0) for pid in g["photos"])
@@ -496,23 +493,4 @@ elif page == "Competições":
             st.table(df)
         else:
             st.info("Ainda não há competições ativas.")
-
-# ---------- PAGE: Logs ----------
-elif page == "Logs":
-    st.title("Logs do app")
-    with st.expander("Últimos eventos", expanded=True):
-        for e in st.session_state["log"][-200:]:
-            st.write(e)
-    st.markdown("---")
-    st.write("Estado (debug):")
-    st.write({
-        "num_plans": len(st.session_state["plans"]),
-        "num_photos": len(st.session_state["photos"]),
-        "num_feed": len(st.session_state["feed"]),
-        "groups": list(st.session_state["groups"].keys())
-    })
-
-# ---------- Footer ----------
-st.markdown("---")
-st.caption("Power Routine — demo. Para persistência/usuários reais, integre com backend e storage (ex.: Railway + S3 / Supabase).")
 
