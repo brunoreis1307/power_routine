@@ -1,5 +1,5 @@
 # app.py — Power Routine (Streamlit)
-# Pages: Gerar Plano, Educação, Compartilhar Fotos, Feed (photos+articles), Competições, Logs
+# Pages: Gerar Plano, Educação, Carregar fotos ou artigos, Feed (photos+articles), Competições, Logs
 import streamlit as st
 import requests
 import time
@@ -175,6 +175,8 @@ if page == "Gerar Plano":
         days = st.number_input("Dias do plano", min_value=1, max_value=30, value=7)
         meals = st.number_input("Refeições por dia", min_value=1, max_value=6, value=3)
         user_id = st.text_input("User ID (dev)", value=get_username())
+        # <-- ADICIONEI AQUI para evitar NameError
+        use_api = st.checkbox("Tentar usar API remota (se disponível)", value=False)
 
     with col2:
         st.write(" ")
@@ -314,7 +316,7 @@ elif page == "Educação":
         st.markdown(a["body"])
         st.markdown("---")
 
-# ---------- PAGE: Compartilhar Fotos ----------
+# ---------- PAGE: Carregar fotos ou artigos ----------
 elif page == "Carregar fotos ou artigos":
     st.title("Compartilhar Fotos de Treino")
     st.write("Compartilhe imagens dos seus treinos, inspire outras pessoas e acompanhe progresso visual.")
@@ -493,4 +495,5 @@ elif page == "Competições":
             st.table(df)
         else:
             st.info("Ainda não há competições ativas.")
+
 
