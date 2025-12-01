@@ -161,7 +161,7 @@ st.sidebar.markdown("**Identidade (apenas display)**")
 disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
 st.session_state["display_name"] = disp
 
-page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Feed", "Competições", ])
+page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Carregar fotos ou artigos", "Feed", "Competições", ])
 st.sidebar.markdown("---")
 
 
@@ -315,7 +315,7 @@ elif page == "Educação":
         st.markdown("---")
 
 # ---------- PAGE: Compartilhar Fotos ----------
-elif page == "Compartilhar Fotos":
+elif page == "Carregar fotos ou artigos":
     st.title("Compartilhar Fotos de Treino")
     st.write("Compartilhe imagens dos seus treinos, inspire outras pessoas e acompanhe progresso visual.")
     uploader_col, gallery_col = st.columns([1,2])
