@@ -117,7 +117,7 @@ st.sidebar.markdown("**Identidade rápida (sem autenticação completa)**")
 disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
 st.session_state["display_name"] = disp
 
-page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Carregar Fotos", "Competições", ])
+page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Competições", ])
 
 st.sidebar.markdown("---")
 st.sidebar.caption("")
@@ -293,7 +293,7 @@ O sono é crucial para recuperação muscular e regulação hormonal. Apontament
 
 
 # ---------- PAGE: Compartilhar Fotos ----------
-elif page == "Carregar fotos":
+elif page == "Compartilhar fotos":
     st.title("Compartilhar Fotos de Treino")
     st.write("Compartilhe imagens dos seus treinos, inspire outras pessoas e acompanhe progresso visual.")
     uploader_col, gallery_col = st.columns([1,2])
