@@ -132,16 +132,12 @@ if page == "Gerar Plano":
         days = st.number_input("Dias do plano", min_value=1, max_value=30, value=7)
         meals = st.number_input("Refeições por dia", min_value=1, max_value=6, value=3)
         user_id = st.text_input("User ID (dev)", value=get_username())
-        use_api = st.checkbox("Tentar usar API remota (se disponível)", value=False)
+
     with col2:
         st.write(" ")
         st.write(" ")
         gen_btn = st.button("Gerar Plano Agora", type="primary")
 
-    # compact log expander
-    with st.expander("Logs / status", expanded=False):
-        for entry in st.session_state["log"][-30:]:
-            st.write(entry)
 
     if gen_btn:
         if st.session_state["generating"]:
