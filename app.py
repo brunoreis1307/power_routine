@@ -161,7 +161,7 @@ st.sidebar.markdown("**Identidade (apenas display)**")
 disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
 st.session_state["display_name"] = disp
 
-page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Carregar Fotos ou Artigos", "Feed", "Competições", ])
+page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Feed", "Competições", ])
 st.sidebar.markdown("---")
 
 
