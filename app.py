@@ -117,10 +117,10 @@ st.sidebar.markdown("**Identidade rápida (sem autenticação completa)**")
 disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
 st.session_state["display_name"] = disp
 
-page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Competições", "Logs"])
+page = st.sidebar.selectbox("Navegar", ["Gerar Plano", "Educação", "Compartilhar Fotos", "Competições", ])
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Dica: para persistência real, hospede uma API e conecte via API_BASE nos secrets.")
+st.sidebar.caption("")
 
 # ---------- PAGE: Gerar Plano ----------
 if page == "Gerar Plano":
@@ -411,20 +411,3 @@ elif page == "Competições":
                         like_photo(photo["id"])
                         st.experimental_rerun()
 
-# ---------- PAGE: Logs ----------
-elif page == "Logs":
-    st.title("Logs do app")
-    with st.expander("Últimos eventos"):
-        for entry in st.session_state["log"][-200:]:
-            st.write(entry)
-    st.markdown("---")
-    st.write("Sessão interna (debug):")
-    st.write({
-        "num_plans": len(st.session_state["plans"]),
-        "num_photos": len(st.session_state["photos"]),
-        "groups": list(st.session_state["groups"].keys())
-    })
-
-# ---------- Footer ----------
-st.markdown("---")
-st.caption("Power Routine — demo. Para persistência/usuários reais, integre com backend e storage (ex.: Railway + S3 / Supabase).")
