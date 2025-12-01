@@ -290,9 +290,7 @@ O sono é crucial para recuperação muscular e regulação hormonal. Apontament
         st.subheader(a["title"])
         st.markdown(a["body"])
         st.markdown("---")
-    st.markdown("**Recursos adicionais:**")
-    st.write("- Artigos científicos e guias de referência (procure fontes confiáveis).")
-    st.write("- Quer ver algo específico aqui? Peça que eu adicione um artigo ou tutorial passo-a-passo!")
+
 
 # ---------- PAGE: Compartilhar Fotos ----------
 elif page == "Compartilhar Fotos":
