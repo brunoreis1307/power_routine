@@ -157,7 +157,7 @@ def join_group(name, user):
 
 # ---------- UI: Sidebar ----------
 st.sidebar.title("Power Routine")
-st.sidebar.markdown("**Identidade (apenas display)**")
+st.sidebar.markdown("**Usuário**")
 disp = st.sidebar.text_input("Seu nome exibido", value=get_username())
 st.session_state["display_name"] = disp
 
